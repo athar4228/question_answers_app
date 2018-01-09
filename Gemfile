@@ -55,3 +55,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Omniauth-google for user registration and authentication
 gem 'omniauth-google-oauth2'
+
+# User Figaro for saving environment variables
+gem 'figaro'
