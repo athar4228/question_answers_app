@@ -13,7 +13,7 @@ RSpec.describe SessionsController, type: :request do
 
         user = assigns(:user)
         expect(session[:user_id]).to eq(user.id)
-        expect(response).to redirect_to(dashboard_path)
+        expect(response).to redirect_to(questions_path)
       end
     end
 

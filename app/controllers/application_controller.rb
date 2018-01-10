@@ -3,6 +3,12 @@ class ApplicationController < ActionController::Base
 
   before_action :authenticate_user!
 
+  rescue_from ActionController::RoutingError, with: :not_found
+
+  def not_found
+    redirect_to :root
+  end
+
   def authenticate_user!
     unless user_signed_in?
       redirect_to :root
