@@ -1,5 +1,16 @@
-<% if user_signed_in? %>
-  <%= link_to "Log out", logout_path %>
-<% else %>
-  <%= link_to "Log In with Google", login_path %>
-<% end %>
+<nav class="navbar navbar-default">
+  <div class="container">
+    <div class="nav navbar-nav navbar-left">
+      <li><%= link_to "Q-A", root_path%></li>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <% if user_signed_in? %>
+        <li><%= link_to "My Questions", "#" %></li>
+        <li><%= link_to "My Answers", "#" %></li>
+        <li><%= link_to "Log out", logout_path %></li>
+      <% else %>
+        <li><%= link_to "Log In with Google", login_path %></li>
+      <% end %>
+    </ul>
+  </div>
+</nav>

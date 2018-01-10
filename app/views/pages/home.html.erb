@@ -1,1 +1,20 @@
+<h1>Recent Questions</h1>
 
+<div class='clearfix'></div>
+
+<ul class="list-group">
+  <% @questions.each do |question| %>
+    <li class='list-group-item col-md-12'>
+      <%= link_to question do %>
+        <div class='question-title col-md-8'>
+          <%= question.title %>
+        </div>
+        <div class="pull-right col-md-4">
+          <%= render_datetime(question.created_at) %>
+        </div>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "More", questions_path, class: 'btn btn-success pull-right' %>
