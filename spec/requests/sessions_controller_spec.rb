@@ -8,7 +8,7 @@ RSpec.describe SessionsController, type: :request do
 
   context '#GET' do
     context 'auth/:provider/callback' do
-      it 'creates user and renders dashboard' do
+      it 'creates user and redirects to questions' do
         get '/auth/google/callback'
 
         user = assigns(:user)
