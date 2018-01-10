@@ -10,6 +10,10 @@ RSpec.describe Question, type: :model do
       expect(build(:question, title: nil)).not_to be_valid
     end
 
+    it 'is invalid if title is empty' do
+      expect(build(:question, title: Faker::Lorem.sentence(200))).not_to be_valid
+    end
+
     it 'is invalid if body is empty' do
       expect(build(:question, body: nil)).not_to be_valid
     end

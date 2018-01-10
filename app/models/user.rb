@@ -1,8 +1,8 @@
 class User < ApplicationRecord
 
-  validates :first_name, :last_name, presence: true
-  validates :email, presence: true, uniqueness: true
-  validates :uid, presence: true
+  validates :first_name, :last_name, presence: true, length: { maximum: 150 }
+  validates :email, presence: true, uniqueness: true, length: { maximum: 100 }
+  validates :uid, presence: true, length: { maximum: 150 }
 
   def self.find_or_create_from_auth_hash(auth)
     self.where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|
