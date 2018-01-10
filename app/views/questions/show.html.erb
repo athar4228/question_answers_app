@@ -14,7 +14,7 @@
   </div>
 </div>
 
-<% if current_user == @question.author %>
+<% if @question.has_author?(current_user) %>
   <%= link_to 'Edit', edit_question_path(@question) %> |
 <% end %>
 <%= link_to 'Back', questions_path %>

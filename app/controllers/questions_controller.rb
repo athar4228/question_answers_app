@@ -1,6 +1,7 @@
 class QuestionsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :set_question, only: [:show, :edit, :update, :destroy]
+  before_action :verify_author, only: [:edit, :update]
 
   def index
     @questions = Question.page(params[:page])
@@ -49,5 +50,11 @@ class QuestionsController < ApplicationController
 
   def question_params
     params.fetch(:question).permit(:title, :body)
+  end
+
+  def verify_author
+    unless @question.has_author?(current_user)
+      redirect_to questions_path, notice: 'You are not allowed to perform this action'
+    end
   end
 end

@@ -26,4 +26,15 @@ RSpec.describe Question, type: :model do
       expect(subject).to be_valid
     end
   end
+
+  context 'matches passed user to be author for question' do
+    it 'returns false if user is not author' do
+      user = build(:user)
+      expect(subject.has_author?(user)).to be(false)
+    end
+
+    it 'returns true if user is author' do
+      expect(subject.has_author?(subject.author)).to be(true)
+    end
+  end
 end

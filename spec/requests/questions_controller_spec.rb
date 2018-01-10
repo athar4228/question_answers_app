@@ -7,6 +7,8 @@ RSpec.describe QuestionsController, type: :request do
     get '/auth/google/callback'
   end
 
+  let!(:user_id) { session[:user_id] }
+
   context '#GET' do
     context 'index' do
 
@@ -48,7 +50,7 @@ RSpec.describe QuestionsController, type: :request do
   context '#PATCH' do
     context 'update' do
 
-      let(:question) { create(:question) }
+      let(:question) { create(:question, user_id: user_id) }
 
       it 'redirects to show page' do
         patch "/questions/#{question.id}", params: { question: { title: "test1", body: "test2" } }

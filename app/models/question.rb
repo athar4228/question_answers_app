@@ -6,4 +6,8 @@ class Question < ApplicationRecord
   validates :body, presence: true
 
   scope :recent, -> { order("created_at DESC") }
+
+  def has_author?(user)
+    self.author == user
+  end
 end
