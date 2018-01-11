@@ -1,5 +1,8 @@
 class User < ApplicationRecord
 
+  has_many :questions, dependent: :destroy
+  has_many :answers, dependent: :destroy
+
   validates :first_name, :last_name, presence: true, length: { maximum: 150 }
   validates :email, presence: true, uniqueness: true, length: { maximum: 100 }
   validates :uid, presence: true, length: { maximum: 150 }

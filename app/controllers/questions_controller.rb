@@ -8,6 +8,8 @@ class QuestionsController < ApplicationController
   end
 
   def show
+    @answers = @question.answers
+    @new_answer = @question.answers.build
   end
 
   def new

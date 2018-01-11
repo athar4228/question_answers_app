@@ -30,6 +30,11 @@ RSpec.describe QuestionsController, type: :request do
         expect(response).to render_template(:show)
         expect(response.code).to eq('200')
       end
+
+      it 'redirects to root page if question id is invalid' do
+        get "/questions/#{Faker::Number.number(1)}"
+        expect(response).to redirect_to(root_path)
+      end
     end
   end
 
@@ -52,13 +57,18 @@ RSpec.describe QuestionsController, type: :request do
 
       let(:question) { create(:question, user_id: user_id) }
 
-      it 'redirects to show page' do
+      it 'redirects to show page if question id is valid' do
         patch "/questions/#{question.id}", params: { question: { title: "test1", body: "test2" } }
         expect(response).to redirect_to(assigns(:question))
         expect(response.code).to eq('302')
         follow_redirect!
 
         expect(response).to render_template(:show)
+      end
+
+      it 'redirects to root page if question id is invalid' do
+        patch "/questions/#{Faker::Number.number(1)}", params: { question: { title: "test1", body: "test2" } }
+        expect(response).to redirect_to(root_path)
       end
     end
   end
@@ -75,6 +85,11 @@ RSpec.describe QuestionsController, type: :request do
         follow_redirect!
 
         expect(response).to render_template(:index)
+      end
+
+      it 'redirects to root page if question id is invalid' do
+        patch "/questions/#{Faker::Number.number(1)}", params: { question: { title: "test1", body: "test2" } }
+        expect(response).to redirect_to(root_path)
       end
     end
   end
