@@ -1,0 +1,7 @@
+<li class="list-group-item col-md-12 answer-<%= answer.id %>">
+  <%= markdown(answer.body) %>
+  <% if answer.has_author?(current_user) %>
+    <%= link_to 'Edit', edit_question_answer_path(@question, answer), remote: true, class: 'btn btn-warning' %>
+    <%= link_to 'Delete', question_answer_path(@question, answer), method: :delete, remote: true, class: 'btn btn-danger' %>
+  <% end %>
+</li>

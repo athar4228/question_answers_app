@@ -1,7 +1,6 @@
 <%= form_with(scope: :question, url: search_questions_path, local: true, method: :get, class: 'navbar-form navbar-left') do |f| %>
-
   <div class="form-group">
-    <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'search' %>
+    <%= text_field_tag :search, params[:search], class: 'form-control typehead', placeholder: 'Search' %>
   </div>
 
   <%= submit_tag :search, class: 'btn btn-default' %>

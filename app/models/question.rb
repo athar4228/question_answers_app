@@ -13,11 +13,13 @@ class Question < ApplicationRecord
 
   scope :recent, -> { order("created_at DESC") }
 
+  delegate :first_name, to: :author, prefix: true
+
   def search_data
     {
       title: title,
       body: body,
-      user_id: user_id
+      user_id: user_id,
     }
   end
 
@@ -26,13 +28,23 @@ class Question < ApplicationRecord
 
     search_params = default_search_params(params)
     search_params[:where][:user_id] = params[:user_id] if params[:user_id].present?
+    search_term[:boost_where][:user_id] = params[:user_id] if params[:user_id].present?
 
     self.search(search_term, search_params)
   end
 
+  def self.autocomplete_search(params={})
+    search_options = {
+      fields: WORD_START_FIELDS,
+      limit: 10,
+      misspellings: { below: 5 },
+    }
+    Question.search(params[:query], search_options)
+  end
+
   def self.default_search_params(params = {})
     {
-      fields: WORD_START_FIELDS, match: :word_start,
+      fields: WORD_START_FIELDS,
       page: params[:page],
       per_page: PER_PAGE
     }

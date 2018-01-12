@@ -6,6 +6,8 @@ class Answer < ApplicationRecord
   validates :body, presence: true
   validates :question_id, uniqueness: { scope: :user_id }
 
+  delegate :first_name, to: :author, prefix: true
+
   def has_author?(user)
     self.author == user
   end

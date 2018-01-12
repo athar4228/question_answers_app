@@ -12,5 +12,7 @@
  *
  *= require_tree .
  *= require main
+ *= require bootstrap-typeahead-rails
+ *= stub style
  *= require_self
  */

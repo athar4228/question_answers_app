@@ -17,9 +17,19 @@ class AnswersController < ApplicationController
   end
 
   def update
+    if @answer.update(answer_params)
+      flash[:notice] = "Answer is successfully updated"
+    else
+      flash[:notice] = "Answer is not updated"
+    end
   end
 
   def destroy
+    if @answer.destroy
+      flash[:notice] = "Answer is successfully deleted"
+    else
+      flash[:notice] = "Answer is not deleted"
+    end
   end
 
   private

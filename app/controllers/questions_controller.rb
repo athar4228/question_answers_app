@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index, :show, :search]
+  skip_before_action :authenticate_user!, only: [:index, :show, :search, :autocomplete]
   before_action :set_question, only: [:show, :edit, :update, :destroy]
   before_action :verify_author, only: [:edit, :update]
 
@@ -48,6 +48,11 @@ class QuestionsController < ApplicationController
     else
       redirect_to questions_url, notice: 'Question is not destroyed.'
     end
+  end
+
+  def autocomplete
+    @questions = Question.autocomplete_search(params)
+    render json: @questions.collect(&:title)
   end
 
   private

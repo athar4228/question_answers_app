@@ -28,4 +28,40 @@ RSpec.describe AnswersController, type: :request do
       end
     end
   end
+
+  context '#PATCH' do
+    context 'update' do
+
+      let(:question) { create(:question, user_id: user_id) }
+      let(:answer) { create(:answer, question_id: question.id) }
+
+      it 'returns status 302 if question id is valid' do
+        patch "/questions/#{question.id}/answers/#{answer.id}", params: { answer: { body: "test2" } }, xhr: true
+        expect(response.code).to eq('302')
+      end
+
+      it 'redirects to root page if question id is invalid' do
+        patch "/questions/#{question.id}/answers/#{Faker::Number.number(1)}", params: { answer: { body: "test2" } }, xhr: true
+        expect(response).to redirect_to(root_path)
+      end
+    end
+  end
+
+  context '#DESTROY' do
+    context 'destroy' do
+
+      let(:question) { create(:question) }
+      let(:answer) { create(:answer, question_id: question.id) }
+
+      it 'returns status 200 if question is valid' do
+        delete "/questions/#{question.id}/answers/#{answer.id}", xhr: true
+        expect(response.code).to eq('200')
+      end
+
+      it 'redirects to root page if question id is invalid' do
+        delete "/questions/#{question.id}/answers/#{Faker::Number.number(1)}", xhr: true
+        expect(response).to redirect_to(root_path)
+      end
+    end
+  end
 end
