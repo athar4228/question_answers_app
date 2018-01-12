@@ -1,10 +1,15 @@
 class QuestionsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index, :show]
+  skip_before_action :authenticate_user!, only: [:index, :show, :search]
   before_action :set_question, only: [:show, :edit, :update, :destroy]
   before_action :verify_author, only: [:edit, :update]
 
   def index
     @questions = Question.page(params[:page])
+  end
+
+  def search
+    @questions = Question.perform_search(params)
+    render 'index'
   end
 
   def show

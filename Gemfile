@@ -77,3 +77,6 @@ gem 'redcarpet'
 
 # Use kaminari for pagination
 gem 'kaminari'
+
+# Use searchkick for search mechanism
+gem 'searchkick'

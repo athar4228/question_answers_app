@@ -36,6 +36,16 @@ RSpec.describe QuestionsController, type: :request do
         expect(response).to redirect_to(root_path)
       end
     end
+
+    context 'index' do
+
+      it 'renders index page' do
+        get '/questions/search'
+
+        expect(response).to render_template(:index)
+        expect(response.code).to eq('200')
+      end
+    end
   end
 
   context '#POST' do
