@@ -1,3 +1,8 @@
-<% answers.each do |answer| %>
-  <%= markdown(answer.body) %>
-<% end %>
+<ul class="list-group">
+  <% answers.each do |answer| %>
+    <li class="list-group-item col-md-12 answer-<%= answer.id %>">
+      <%= markdown(answer.body) %>
+    </li>
+    <div class='clearfix'></div>
+  <% end %>
+</ul>

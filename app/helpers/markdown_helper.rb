@@ -3,7 +3,7 @@ module  MarkdownHelper
   def markdown(text)
     renderer = Redcarpet::Render::HTML.new(renderer_extensions)
     markdown_to_html = Redcarpet::Markdown.new(renderer, extensions)
-    markdown_to_html.render(text).html_safe
+    markdown_to_html.render(text.to_s).html_safe
   end
 
   private
