@@ -4,7 +4,7 @@ class QuestionsController < ApplicationController
   before_action :verify_author, only: [:edit, :update]
 
   def index
-    @questions = Question.page(params[:page])
+    @questions = Question.perform_search(params)
   end
 
   def search
@@ -13,8 +13,8 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @answers = @question.answers
-    @new_answer = @question.answers.build
+    @answers = @question.fetch_answers(current_user&.id)
+    @new_answer = @question.answers.build if user_signed_in?
   end
 
   def new

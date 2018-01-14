@@ -13,18 +13,16 @@
       <%= markdown(@question.body) %>
     </div>
 
-    <div class="pull-right">
-      <%= @question.author_first_name %>
-    </div>
+    <small class='pull-right'><%= @question.author_first_name %></small>
+    <div class="clearfix"></div>
+    <small class='pull-right'><%= render_datetime(@question.created_at) %></small>
   </div>
 </div>
 
 <h2>Answers</h2>
-<% if @answers.exists? %>
-  <div class="question-answers">
-    <%= render 'answers', answers: @answers %>
-  </div>
-<% end %>
+<div class="question-answers">
+  <%= render 'answers', answers: show_saved_answers(@answers) %>
+</div>
 
 <% if can_submit_answer?(@question) %>
   <div class='new-answer'>
