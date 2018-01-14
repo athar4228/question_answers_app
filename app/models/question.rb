@@ -25,7 +25,7 @@ class Question < ApplicationRecord
     search_term = params[:search].present? ? params[:search] : '*'
 
     search_params = default_search_params(params)
-    search_params[:where][:user_id] = params[:user_id] if params[:user_id].present?
+    search_params[:where][:user_id] = params[:author_id] if params[:author_id].present?
     self.search(search_term, search_params)
   end
 
@@ -57,7 +57,8 @@ class Question < ApplicationRecord
       page: params[:page],
       per_page: PER_PAGE,
       where: {},
-      order: { created_at: {order: "desc" } }
+      order: { created_at: {order: "desc" } },
+      includes: [:author, answers: :author]
     }
   end
 end

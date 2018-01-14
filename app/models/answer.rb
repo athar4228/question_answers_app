@@ -25,7 +25,8 @@ class Answer < ApplicationRecord
 
     search_params = default_search_params(params)
     search_params[:where][:question_id] = params[:question_id] if params[:question_id].present?
-    search_params[:boost_where][:user_id] =  { value: params[:user_id].to_i, factor:100 }  if params[:user_id].present?
+    search_params[:boost_where][:user_id] =  { value: params[:user_id], factor:100 }  if params[:user_id].present?
+    search_params[:where][:user_id] = params[:author_id] if params[:author_id].present?
 
     self.search(search_term, search_params)
   end
@@ -42,7 +43,8 @@ class Answer < ApplicationRecord
       per_page: PER_PAGE,
       where: {},
       boost_where: {},
-      order: {_score: :desc}
+      order: {_score: :desc},
+      includes:  :question
     }
   end
 end

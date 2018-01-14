@@ -15,8 +15,8 @@
 
     <ul class="nav navbar-nav navbar-right">
       <% if user_signed_in? %>
-        <li><%= link_to "My Questions", "#" %></li>
-        <li><%= link_to "My Answers", "#" %></li>
+        <li><%= link_to "My Questions", my_questions_path %></li>
+        <li><%= link_to "My Answers", my_answers_path %></li>
         <li><%= link_to "Log out", logout_path %></li>
       <% else %>
         <li><%= link_to "Log In with Google", login_path %></li>
