@@ -1,0 +1,13 @@
+<div class='clearfix'></div>
+<% flash.each do |type, messages| %>
+  <div class='alert alert-<%= alert_class(type) %> alert-dismissible fade in'>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <% if messages.present? and messages.is_a? Array %>
+      <% messages.each do |message| %>
+        <li><%= message.to_s %></li>
+      <% end %>
+    <% else %>
+      <li><%= messages %></li>
+    <% end %>
+  </div>
+<% end %>
