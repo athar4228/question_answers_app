@@ -1,24 +1,26 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Ruby version
+--------
+    2.4.2
 
-Things you may want to cover:
+System dependencies
+--------
+    mysql2
+    elasticsearch(https://www.elastic.co/guide/en/elasticsearch/reference/current/setup.html)
 
-* Ruby version
+Database creation
+--------
+    rake db:create
 
-* System dependencies
+Database initialization
+--------
+    rake db:migrate
 
-* Configuration
+How to run the test suite
+--------
+    rspec
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Deployment instructions
+--------
+    Please install elastic search on the server where being deployed
