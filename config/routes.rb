@@ -15,4 +15,6 @@ Rails.application.routes.draw do
   get 'auth/failure', to: redirect('/')
 
   root to: 'pages#home'
+
+  get '*path', to: 'application#not_found'
 end
