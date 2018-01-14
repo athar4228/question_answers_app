@@ -1,3 +1,5 @@
 <% unless @answer.persisted? %>
   $(".answer-<%= @answer.id %>").fadeOut();
+  $(".new-answer").html("<%= j render(partial: 'answers/form', locals: {question: @question, answer: @question.answers.build}) %>");
+  window.load_markdown_for_text_area();
 <% end %>

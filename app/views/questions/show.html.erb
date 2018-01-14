@@ -23,8 +23,8 @@
   <%= render 'answers', answers: show_saved_answers(@answers) %>
 </div>
 
-<% if can_submit_answer?(@question) %>
-  <div class='new-answer'>
-    <%= render 'answers/new', question: @question, answer: @new_answer %>
-  </div>
-<% end %>
+<div class='new-answer'>
+  <% if can_submit_answer?(@question) %>
+    <%= render 'answers/form', question: @question, answer: @new_answer %>
+  <% end %>
+</div>

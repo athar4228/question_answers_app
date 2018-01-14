@@ -1,0 +1,4 @@
+<% if @answer.errors.blank? %>
+  $(".new-answer form").remove();
+  $(".list-group").prepend("<%= j render(partial: 'answers/answer', locals: {answer: @answer}) %>");
+<% end %>

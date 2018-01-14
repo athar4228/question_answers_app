@@ -1,1 +1,2 @@
-$(".answer-<%= @answer.id %>").html("<%= j render(partial: 'answers/edit', locals: {question: @question, answer: @answer}) %>");
+$(".answer-<%= @answer.id %>").html("<%= j render(partial: 'answers/form', locals: {question: @question, answer: @answer}) %>");
+  window.load_markdown_for_text_area();

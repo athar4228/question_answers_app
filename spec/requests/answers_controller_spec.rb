@@ -14,12 +14,8 @@ RSpec.describe AnswersController, type: :request do
     context 'create' do
 
       it 'redirects to question show page if question is valid after creating answer' do
-        post "/questions/#{question.id}/answers", params: { answer: { body: "test2" } }
-        expect(response).to redirect_to(question)
-        expect(response.code).to eq('302')
-        follow_redirect!
-
-        expect(response).to render_template(:show)
+        post "/questions/#{question.id}/answers", params: { answer: { body: "test2" } }, xhr: true
+        expect(response.code).to eq('200')
       end
 
       it 'redirects to question show page' do

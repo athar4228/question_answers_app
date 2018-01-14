@@ -1,4 +1,4 @@
-load_markdown_for_text_area = ->
+window.load_markdown_for_text_area = ->
   $(".mark").markdown
     autofocus: true
 
